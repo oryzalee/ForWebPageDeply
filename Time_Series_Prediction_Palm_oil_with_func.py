@@ -24,20 +24,13 @@ import math
 from sklearn.preprocessing import MinMaxScaler
 plt.style.use('fivethirtyeight')
 
-
-
-
-
-
 dateparse = lambda x: pd.datetime.strptime(x, '%Y-%m-%d')
-os.chdir('C:\\Users\\oryza\\OneDrive\\Desktop\\DataScience\\DataMiningOnClass\\project\\WQD7005_DataMining\\B_Processed_Data')
-CPO_Price=pd.read_csv("..\\A_Raw_Data\\CPOPrices\\investing_Bursa_CPO_USD_price.csv",parse_dates=['Date'], date_parser=dateparse)
+os.chdir('C:\\Users\\oryza\\OneDrive\\Desktop\\DataScience\\DataMiningOnClass\\project')
+CPO_Price=pd.read_csv("..\\WQD7005_DataMining\\A_Raw_Data\\CPOPrices\\investing_Bursa_CPO_USD_price.csv",parse_dates=['Date'], date_parser=dateparse)
 
 CPO_Price_September=CPO_Price[CPO_Price['Date']>='2014-09-01']
 CPO_Price_September=CPO_Price_September.drop(['Open','High','Low','Vol.','Change %'],axis=1)
 CPO_Price_September.set_index('Date',inplace=True)
-
-
 
 def Time_Series():
     y = CPO_Price_September['Price'].resample('SMS').mean()
